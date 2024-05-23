@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=60mm, initial-scale=1.0"> <!-- Cambiar el ancho de la vista para el papel de 58mm -->
+    <title>Ticket de Compra</title>
+    <style>
+     body {
+            font-family: tahoma, Helvetica, sans-serif;
+            margin: 0;
+            font-size: 3mm;
+            text-align: center; /* Centrar todo el contenido */
+        }
+
+        #thermal-pos {
+           
+            margin: none;
+            max-width: 60mm;
+            
+        }
+
+        .label {
+            margin: 0;
+            margin-left: 0.5mm;
+        }
+
+        .table {
+          
+            border-collapse: collapse; /* Elimina el espacio entre celdas */
+            border-collapse: collapse;
+            border-spacing: 0;
+            
+        }
+
+        .table-header h2 {
+            margin: 0;
+            padding-left: 0.5mm;
+            
+        }
+        .table-footer.top-line td,
+        
+        .table-footer {
+            margin-left: 0.5mm;
+        }
+        .table-footer h2 {
+            margin: 0; /* Asegurarte de que no haya margen dentro de los elementos h2 */
+            padding: 1mm 0; /* Ajustar el padding superior e inferior */
+        }
+        .table-footer h4 {
+            margin: 0; /* Asegurarte de que no haya margen dentro de los elementos h2 */
+            padding: 1mm 0; /* Ajustar el padding superior e inferior */
+        }
+        .saldo-text {
+            margin: 0;
+            margin-left: 0.1mm;
+        }
+
+        .policy {
+            margin-left: 0.5mm;
+        }
+
+      /* Agrega el estilo para eliminar el espacio vertical en las celdas de las filas de la tabla */
+      .table-footer td {
+          padding: 0;
+          line-height: 1;
+      }
+      .nro_boleta {
+        margin: 0;
+        padding: 0;
+    }
+    .nro_mesa {
+        margin: 0;
+    }
+    .fecha_recepcion {
+        margin: 0;
+    }
+    
+    .info-tienda {
+        margin: 0;
+    }
+    .m-0 {
+        margin: 0;
+    }
+    .direccion {
+        margin: 0;
+        
+    }
+  
+
+    </style>
+  </head>
+  <body onload="window.print()" onfocus="window.close()">
+
+    <script>
+        // Obtener los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+
+        // Obtener los valores de los parámetros
+        var VirtualFactura = params.has('VirtualFactura') ? params.get('VirtualFactura') : "N/A";
+        var VirtualVerificaPos = params.has('VirtualVerificaPos') ? params.get('VirtualVerificaPos') : "N/A";
+        var EntradaID = params.has('EntradaID') ? params.get('EntradaID') : "N/A";
+        var EntradaFecha = params.has('EntradaFecha') ? params.get('EntradaFecha') : "dd/mm/aaaa hh:mm:ss";
+        var SalidaFecha = params.has('SalidaFecha') ? params.get('SalidaFecha') : "dd/mm/aaaa hh:mm:ss";
+        var VirtualValidaBase = params.has('VirtualValidaBase') ? params.get('VirtualValidaBase') : "N/A";
+        var VirtualValidaIVA = params.has('VirtualValidaIVA') ? params.get('VirtualValidaIVA') : "N/A";
+        var SalidaValor = params.has('SalidaValor') ? params.get('SalidaValor') : "$0.00";
+
+      
+
+        
+
+    </script>
+    <div id="thermal-pos">
+        <div class="label">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+            width="70%" viewBox="0 0 800.000000 290.000000" preserveAspectRatio="xMidYMid meet">
+            <g transform="translate(0.000000,350.000000) scale(0.100000,-0.100000)"
+            fill="#000000" stroke="none">
+            <path d="M263 3129 c-64 -24 -125 -90 -142 -151 -9 -32 -11 -295 -9 -1000 l3
+            -957 235 151 c215 138 326 208 483 307 31 20 57 39 57 42 0 4 -13 9 -29 12
+            -15 3 -43 19 -62 34 -18 15 -30 23 -26 16 5 -8 -18 -25 -74 -53 -70 -36 -87
+            -40 -121 -35 -33 6 -45 15 -69 53 -16 25 -29 56 -29 69 0 12 -10 43 -22 69
+            l-23 46 40 31 c22 17 58 50 80 72 55 57 179 234 185 265 3 16 13 26 28 28 13
+            2 60 30 105 63 45 32 127 81 182 109 113 57 175 70 329 70 l99 0 79 46 c93 53
+            270 126 351 144 48 11 59 11 79 -2 23 -16 98 -140 98 -164 0 -17 -73 -76 -80
+            -65 -3 5 -5 -17 -5 -49 0 -54 1 -57 20 -48 10 6 109 66 220 133 110 67 239
+            143 286 168 l86 47 2507 0 2506 0 0 -385 0 -385 -2495 0 -2495 0 0 -405 0
+            -405 -1265 0 -1265 0 0 -222 c0 -194 3 -228 19 -263 27 -59 65 -100 116 -124
+            l45 -21 3720 0 3720 0 45 21 c51 24 89 65 116 124 18 38 19 100 19 1234 0 886
+            -3 1204 -12 1233 -18 60 -79 123 -144 147 l-55 21 -3692 -1 c-3670 0 -3692 0
+            -3744 -20z m7167 -1460 c46 -20 130 -96 130 -118 0 -5 -29 -32 -65 -61 l-64
+            -51 -39 39 c-45 45 -89 58 -135 38 -107 -45 -131 -224 -42 -313 28 -28 40 -33
+            79 -33 49 0 93 17 115 44 12 14 7 16 -43 16 l-56 0 0 70 0 70 140 0 140 0 0
+            -185 0 -185 -80 0 c-79 0 -80 0 -80 26 l0 25 -25 -19 c-39 -31 -112 -45 -169
+            -32 -71 16 -116 42 -169 99 -74 79 -91 126 -92 251 0 92 3 111 25 155 44 89
+            132 161 227 185 54 13 145 4 203 -21z m-4302 5 c89 -37 146 -124 147 -224 0
+            -86 -40 -161 -109 -204 -41 -26 -60 -30 -137 -34 l-89 -4 0 -104 0 -104 -95 0
+            -95 0 0 345 0 345 170 0 c132 0 179 -4 208 -16z m687 -24 c7 -19 65 -173 128
+            -342 l114 -308 -102 0 -103 0 -18 65 -19 66 -94 -3 -93 -3 -20 -62 -19 -63
+            -99 0 c-55 0 -100 3 -100 6 0 3 57 159 127 345 l127 340 79 -3 80 -3 12 -35z
+            m812 15 c90 -45 141 -139 130 -242 -6 -57 -43 -132 -76 -155 -19 -13 -16 -20
+            54 -133 41 -66 75 -124 75 -128 0 -4 -48 -6 -107 -5 l-106 3 -62 100 c-58 95
+            -63 100 -98 103 l-37 3 0 -105 0 -106 -95 0 -95 0 0 345 0 345 183 0 c176 0
+            185 -1 234 -25z m545 -112 l3 -138 110 137 110 137 98 0 c76 1 97 -2 91 -11
+            -4 -7 -55 -71 -113 -143 -57 -71 -109 -136 -114 -142 -6 -9 28 -66 115 -190
+            69 -98 128 -184 132 -190 6 -10 -15 -13 -92 -13 l-99 0 -89 134 -89 135 -32
+            -32 -33 -31 0 -103 0 -103 -95 0 -95 0 0 345 0 345 95 0 94 0 3 -137z m778
+            -208 l0 -345 -100 0 -100 0 0 345 0 345 100 0 100 0 0 -345z m501 175 l134
+            -170 3 170 2 170 95 0 95 0 0 -345 0 -346 -77 3 -77 3 -131 162 -130 161 -3
+            -164 -2 -164 -95 0 -95 0 0 345 0 345 74 0 73 0 134 -170z"/>
+            <path d="M2940 1450 l0 -70 60 0 c68 0 80 12 80 77 0 52 -14 63 -82 63 l-58 0
+            0 -70z"/>
+            <path d="M3705 1425 c-9 -33 -23 -82 -31 -109 -8 -27 -14 -51 -14 -53 0 -2 27
+            -3 60 -3 33 0 60 3 60 8 0 4 -13 54 -29 112 l-29 105 -17 -60z"/>
+            <path d="M4400 1450 l0 -70 70 0 c79 0 90 10 90 77 0 54 -13 63 -92 63 l-68 0
+            0 -70z"/>
+            <path d="M2790 2200 l0 -300 309 0 308 0 17 60 17 60 79 0 80 0 17 -60 18 -60
+            87 0 88 0 -29 78 c-15 42 -65 177 -111 300 l-83 222 -66 0 -66 0 -112 -297
+            -112 -298 -1 68 0 67 -135 0 -135 0 0 230 0 230 -85 0 -85 0 0 -300z m753 43
+            c10 -38 20 -78 23 -90 6 -22 3 -23 -46 -23 -49 0 -52 1 -46 23 3 12 13 52 23
+            90 10 37 20 67 23 67 3 0 13 -30 23 -67z"/>
+            <path d="M4040 2200 l0 -300 85 0 85 0 0 90 0 90 33 0 c30 -1 36 -7 86 -90
+            l53 -90 179 0 178 0 17 60 17 61 80 -3 81 -3 16 -55 16 -55 88 -3 c82 -3 87
+            -2 82 16 -4 10 -53 144 -110 298 l-104 279 -68 0 -68 0 -108 -285 c-59 -157
+            -109 -289 -110 -293 -4 -9 -128 188 -128 202 0 4 10 16 21 27 76 67 76 207 1
+            288 -53 56 -91 66 -264 66 l-158 0 0 -300z m298 138 c7 -7 12 -28 12 -48 0
+            -49 -15 -60 -82 -60 l-58 0 0 60 0 60 58 0 c32 0 63 -5 70 -12z m562 -195 c0
+            -9 -17 -13 -50 -13 -27 0 -50 1 -50 3 0 2 6 26 14 53 8 27 20 69 27 94 l12 45
+            23 -85 c13 -47 24 -91 24 -97z"/>
+            <path d="M5190 2200 l0 -300 80 0 80 0 0 152 c0 89 4 148 9 143 5 -6 28 -54
+            52 -108 l43 -98 44 3 45 3 46 104 46 104 3 -152 3 -151 84 0 85 0 0 300 0 300
+            -91 0 -90 0 -56 -117 c-30 -65 -59 -129 -65 -143 -8 -22 -15 -11 -73 115 l-64
+            140 -91 3 -90 3 0 -301z"/>
+            <path d="M5910 2200 l0 -300 80 0 80 0 0 89 0 88 80 6 c90 6 127 23 171 77 83
+            104 50 253 -71 317 -39 21 -56 23 -192 23 l-148 0 0 -300z m278 138 c7 -7 12
+            -28 12 -48 0 -49 -15 -60 -77 -60 l-53 0 0 60 0 60 53 0 c29 0 58 -5 65 -12z"/>
+            <path d="M6430 2200 l0 -300 309 0 308 0 17 60 17 60 79 0 80 0 17 -60 18 -60
+            87 0 88 0 -29 78 c-15 42 -65 177 -111 300 l-83 222 -66 0 -66 0 -112 -297
+            -112 -298 -1 68 0 67 -135 0 -135 0 0 230 0 230 -85 0 -85 0 0 -300z m753 43
+            c10 -38 20 -78 23 -90 6 -22 3 -23 -46 -23 -49 0 -52 1 -46 23 3 12 13 52 23
+            90 10 37 20 67 23 67 3 0 13 -30 23 -67z"/>
+            <path d="M1794 2414 c-19 -15 -19 -15 1 -6 11 5 27 12 35 15 13 5 13 6 -1 6
+            -8 1 -24 -6 -35 -15z"/>
+            <path d="M1920 2416 c0 -2 7 -7 16 -10 8 -3 12 -2 9 4 -6 10 -25 14 -25 6z"/>
+            <path d="M1749 2383 c-13 -16 -12 -17 4 -4 9 7 17 15 17 17 0 8 -8 3 -21 -13z"/>
+            <path d="M1975 2376 c10 -14 19 -26 22 -26 7 0 -17 39 -28 46 -6 3 -3 -5 6
+            -20z"/>
+            <path d="M1825 2376 c-39 -17 -55 -37 -62 -79 -12 -75 61 -140 132 -117 42 14
+            65 39 71 81 14 84 -65 149 -141 115z m45 -10 c0 -15 -14 -35 -21 -30 -15 9
+            -10 34 6 34 8 0 15 -2 15 -4z m46 -34 c-18 -18 -29 -12 -20 11 3 9 12 13 21
+            10 13 -5 13 -8 -1 -21z m-98 -10 c2 -7 -3 -12 -12 -12 -9 0 -16 7 -16 16 0 17
+            22 14 28 -4z m132 -27 c0 -9 -9 -15 -21 -15 -18 0 -19 2 -9 15 7 8 16 15 21
+            15 5 0 9 -7 9 -15z m-70 -15 c0 -5 -7 -10 -15 -10 -8 0 -15 5 -15 10 0 6 7 10
+            15 10 8 0 15 -4 15 -10z m-70 -15 c-7 -8 -16 -15 -21 -15 -5 0 -9 7 -9 15 0 9
+            9 15 21 15 18 0 19 -2 9 -15z m130 -31 c0 -9 -5 -14 -12 -12 -18 6 -21 28 -4
+            28 9 0 16 -7 16 -16z m-104 -10 c-3 -9 -6 -17 -6 -20 0 -2 -7 -1 -15 2 -12 5
+            -13 10 -4 20 16 19 33 18 25 -2z m54 -20 c0 -8 -7 -14 -15 -14 -17 0 -18 2 -9
+            24 7 18 24 12 24 -10z"/>
+            <path d="M1170 2316 c-36 -12 -83 -32 -104 -43 l-39 -20 62 -52 c35 -29 68
+            -48 74 -45 7 4 55 34 108 66 90 56 95 61 91 88 -4 30 -5 30 -66 30 -38 0 -86
+            -9 -126 -24z"/>
+            <path d="M1712 2280 c0 -19 2 -27 5 -17 2 9 2 25 0 35 -3 9 -5 1 -5 -18z"/>
+            <path d="M920 2183 c-78 -54 -166 -137 -186 -176 -14 -26 -14 -31 2 -48 9 -10
+            29 -19 43 -19 23 0 268 135 298 164 8 8 -1 25 -40 68 l-52 57 -65 -46z"/>
+            <path d="M1756 2165 c4 -10 -691 -452 -706 -448 -5 1 -10 -22 -12 -52 -1 -30
+            -1 -54 3 -53 11 6 794 501 802 508 4 4 -14 18 -41 31 -28 14 -48 20 -46 14z"/>
+            <path d="M883 1823 c9 -2 25 -2 35 0 9 3 1 5 -18 5 -19 0 -27 -2 -17 -5z"/>
+            <path d="M955 1808 c11 -6 31 -20 45 -32 14 -11 11 -6 -7 12 -18 17 -38 32
+            -45 32 -7 0 -4 -6 7 -12z"/>
+            <path d="M788 1783 c-18 -21 -31 -43 -25 -43 2 0 13 14 25 30 25 33 24 41 0
+            13z"/>
+            <path d="M853 1770 c-13 -5 -32 -24 -43 -42 -64 -103 75 -214 161 -129 23 24
+            29 38 29 74 0 39 -5 49 -35 76 -37 32 -70 38 -112 21z m47 -24 c0 -8 -4 -18
+            -10 -21 -5 -3 -10 -4 -10 -1 0 2 -3 11 -6 20 -4 11 -1 16 10 16 9 0 16 -6 16
+            -14z m55 -5 c3 -6 -3 -15 -14 -20 -16 -9 -18 -8 -14 9 6 21 18 26 28 11z
+            m-106 -40 c-16 -5 -33 15 -24 30 6 9 12 7 22 -7 9 -13 10 -20 2 -23z m136 -12
+            c10 -15 -1 -23 -20 -15 -9 3 -13 10 -10 16 8 13 22 13 30 -1z m-75 -20 c0 -5
+            -4 -9 -10 -9 -5 0 -10 7 -10 16 0 8 5 12 10 9 6 -3 10 -10 10 -16z m-60 -5 c0
+            -2 -9 -8 -20 -14 -17 -9 -20 -8 -20 9 0 14 5 18 20 14 11 -3 20 -7 20 -9z
+            m123 -40 c-5 -13 -23 -20 -23 -10 0 2 -3 11 -6 19 -4 12 0 14 15 10 12 -3 17
+            -11 14 -19z m-103 -9 c0 -8 -7 -15 -15 -15 -16 0 -20 12 -8 23 11 12 23 8 23
+            -8z m49 -4 c8 -14 7 -20 -4 -25 -11 -4 -15 2 -15 19 0 30 6 32 19 6z"/>
+            <path d="M741 1674 c0 -11 3 -14 6 -6 3 7 2 16 -1 19 -3 4 -6 -2 -5 -13z"/>
+            </g>
+        </svg>
+                              
+            <br/>
+            <br/>
+            <p class="info-tienda">
+                Nit: 72.272.633-6
+                <br>
+                Cr 18 #11-38 Bogotá, Colombia
+                <br>
+                Poliza: #0010667-5 SURAMERICANA
+                <br>
+                <br>
+            </p>
+        </div>
+        
+        <div class="label">
+            <b>HORARIO:</b>
+            <br>
+            <b>- LUN A SAB: 6 AM - 7 PM</b> 
+            <br>
+            <b>- DOM Y FEST: 8 AM - 2 PM</b> 
+            <br>
+            <br>
+        </div>
+        <div class="label">
+            <p class="fecha_recepcion"> 
+                <b id="VirtualFactura"></b>
+                <b span id="VirtualFactura"></b>
+            </p>
+            <p class="fecha_recepcion">
+                <b id="VirtualVerificaPos"></b>
+                <b span id="VirtualVerificaPos"></b>
+            </p>
+            <p class="fecha_recepcion">
+                PLACA
+                <br>
+                <b id="EntradaID"></b>
+                <b span id="EntradaID"></b>
+                <br>
+            </p>
+        </div>
+
+        <table class="table">
+            <tbody id="tablaBody">
+                
+                <tr class="table-footer">
+                    <td colspan="2"><h2>Ingreso:</h2></td>
+                    <td colspan="2"><h2 id="EntradaFecha"></h2></td>
+                    
+                </tr>
+                <tr class="table-footer top-line">
+                    <td class=""  colspan="2"><h2>Salida:</h2></td>
+                    <td colspan="2"><h2 id="SalidaFecha"></h2></td>
+                </tr>
+                <tr class="table-footer">
+                    <td colspan="2"><h2>Duración:</h2></td>
+                    <td colspan="2"><h2 id="SalidaDuracion"></h2></td>
+                </tr>
+                <tr class="table-footer">
+                    <td colspan="2"><h2></h2></td>
+                    <td colspan="2"><h2 id="VirtualValidaBase"></h2></td>
+                </tr>
+                <tr class="table-footer">
+                    <td colspan="2"><h2>Duración:</h2></td>
+                    <td colspan="2"><h2 id="VirtualValidaIVA"></h2></td>
+                </tr>
+                <tr class="table-footer">
+                    <td colspan="2"><h2>Total Pago:</h2></td>
+                    <td colspan="2"><h2 id="SalidaValor"></h2></td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+    <script>
+        var VirtualFactura = document.getElementById("VirtualFactura").textContent = VirtualFactura;
+        var VirtualVerificaPos = document.getElementById("VirtualVerificaPos").textContent = VirtualVerificaPos;
+        var EntradaID = document.getElementById("EntradaID").textContent = EntradaID;
+        var EntradaFecha = document.getElementById("EntradaFecha").textContent = EntradaFecha;
+        var SalidaFecha = document.getElementById("SalidaFecha").textContent = SalidaFecha;
+        var VirtualValidaBase = document.getElementById("VirtualValidaBase").textContent = VirtualValidaBase;
+        var VirtualValidaIVA = document.getElementById("VirtualValidaIVA").textContent = VirtualValidaIVA;
+        var SalidaValor = document.getElementById("SalidaValor").textContent = SalidaValor;
+       
+
+    </script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
