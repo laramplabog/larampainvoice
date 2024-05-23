@@ -105,7 +105,7 @@
         var SalidaFecha = params.has('SalidaFecha') ? params.get('SalidaFecha') : "dd/mm/aaaa hh:mm:ss";
         var VirtualValidaBase = params.has('VirtualValidaBase') ? params.get('VirtualValidaBase') : "N/A";
         var VirtualValidaIVA = params.has('VirtualValidaIVA') ? params.get('VirtualValidaIVA') : "N/A";
-        var SalidaValor = params.has('SalidaValor') ? params.get('SalidaValor') : "$0.00";
+        var SalidaValor = params.has('SalidaValor') ? params.get('SalidaValor') : " $0.00";
 
       
 
@@ -263,35 +263,47 @@
                 <b id="EntradaID"></b>
                 <b span id="EntradaID"></b>
                 <br>
+                <br>
+            </p>
+            <p class="fecha_recepcion">
+                Ingreso:
+                <b id="EntradaFecha"></b>
+                <b span id="EntradaFecha"></b>
+                <br>
+            </p>
+            <p class="fecha_recepcion">
+                Salida:
+                <b id="SalidaFecha"></b>
+                <b span id="SalidaFecha"></b>
+                <br>
+            </p>
+            <p class="fecha_recepcion">
+                Duración:
+                <b id="SalidaDuracion"></b>
+                <b span id="SalidaDuracion"></b>
+                <br>
+            </p>
+            <p class="fecha_recepcion">
+                <br>
+                <b id="VirtualValidaBase"></b>
+                <b span id="VirtualValidaBase"></b>
+                <br>
+            </p>
+            <p class="fecha_recepcion">
+                <br>
+                <b id="VirtualValidaIVA"></b>
+                <b span id="VirtualValidaIVA"></b>
+                <br>
+                <br>
             </p>
         </div>
 
         <table class="table">
             <tbody id="tablaBody">
                 
+                
                 <tr class="table-footer">
-                    <td colspan="2"><h2>Ingreso:</h2></td>
-                    <td colspan="2"><h2 id="EntradaFecha"></h2></td>
-                    
-                </tr>
-                <tr class="table-footer top-line">
-                    <td class=""  colspan="2"><h2>Salida:</h2></td>
-                    <td colspan="2"><h2 id="SalidaFecha"></h2></td>
-                </tr>
-                <tr class="table-footer">
-                    <td colspan="2"><h2>Duración:</h2></td>
-                    <td colspan="2"><h2 id="SalidaDuracion"></h2></td>
-                </tr>
-                <tr class="table-footer">
-                    <td colspan="2"><h2></h2></td>
-                    <td colspan="2"><h2 id="VirtualValidaBase"></h2></td>
-                </tr>
-                <tr class="table-footer">
-                    <td colspan="2"><h2>Duración:</h2></td>
-                    <td colspan="2"><h2 id="VirtualValidaIVA"></h2></td>
-                </tr>
-                <tr class="table-footer">
-                    <td colspan="2"><h2>Total Pago:</h2></td>
+                    <td colspan="2"><h2>Total Pago:  </h2></td>
                     <td colspan="2"><h2 id="SalidaValor"></h2></td>
                 </tr>
                 
