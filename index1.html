@@ -102,7 +102,11 @@
         var TipoPlaca = params.has('TipoPlaca') ? params.get('TipoPlaca') : "N/A";
         var VirtualReglamento = params.has('VirtualReglamento') ? params.get('VirtualReglamento') : "N/A";
         var EntradaPlaca = params.has('EntradaPlaca') ? params.get('EntradaPlaca') : "N/A";
+        // Construye la URL con la variable `data`
+        var barcodeUrl = "https://barcode.tec-it.com/barcode.ashx?data=" + encodeURIComponent(EntradaPlaca);
+
         
+
     </script>
     <div id="thermal-pos">
         <div class="label">
@@ -256,7 +260,10 @@
                 <br>
                 <b id="placa"></b>
                 <b span id="placa"></b>
+                <br>
+                <br>
             </p>
+            <img id="barcodeImage" alt="">
 
         </div>
 
@@ -276,6 +283,8 @@
         var TipoPlaca = document.getElementById("tarifa").textContent = TipoPlaca;
         var EntradaPlaca = document.getElementById("placa").textContent = EntradaPlaca;
         var VirtualReglamento = document.getElementById("reglamiento").textContent = VirtualReglamento;
+        // Establece la URL en el atributo 'src' de una imagen
+        document.getElementById("barcodeImage").src = barcodeUrl;
 
     </script>
 </body>
