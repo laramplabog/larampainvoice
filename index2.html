@@ -103,6 +103,7 @@
         var EntradaID = params.has('EntradaID') ? params.get('EntradaID') : "N/A";
         var EntradaFecha = params.has('EntradaFecha') ? params.get('EntradaFecha') : "dd/mm/aaaa hh:mm:ss";
         var SalidaFecha = params.has('SalidaFecha') ? params.get('SalidaFecha') : "dd/mm/aaaa hh:mm:ss";
+        var SalidaDuracion = params.has('SalidaDuracion') ? params.get('SalidaDuracion') : "dd/mm/aaaa hh:mm:ss";
         var VirtualValidaBase = params.has('VirtualValidaBase') ? params.get('VirtualValidaBase') : "N/A";
         var VirtualValidaIVA = params.has('VirtualValidaIVA') ? params.get('VirtualValidaIVA') : "N/A";
         var SalidaValor = params.has('SalidaValor') ? params.get('SalidaValor') : " $0.00";
@@ -316,6 +317,7 @@
         var EntradaID = document.getElementById("EntradaID").textContent = EntradaID;
         var EntradaFecha = document.getElementById("EntradaFecha").textContent = EntradaFecha;
         var SalidaFecha = document.getElementById("SalidaFecha").textContent = SalidaFecha;
+        var SalidaDuracion = document.getElementById("SalidaDuracion").textContent = SalidaDuracion;
         var VirtualValidaBase = document.getElementById("VirtualValidaBase").textContent = VirtualValidaBase;
         var VirtualValidaIVA = document.getElementById("VirtualValidaIVA").textContent = VirtualValidaIVA;
         var SalidaValor = document.getElementById("SalidaValor").textContent = SalidaValor;
@@ -323,16 +325,4 @@
 
     </script>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
 
