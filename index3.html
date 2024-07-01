@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=60mm, initial-scale=1.0"> <!-- Cambiar el ancho de la vista para el papel de 58mm -->
+    <title>Ticket de Compra</title>
+    <style>
+     body {
+            font-family: tahoma, Helvetica, sans-serif;
+            margin: 0;
+            font-size: 3mm;
+            text-align: center; /* Centrar todo el contenido */
+        }
+
+        #thermal-pos {
+           
+            margin: none;
+            max-width: 60mm;
+            
+        }
+
+        .label {
+            margin: 0;
+            margin-left: 0.5mm;
+        }
+
+        .table {
+          
+            border-collapse: collapse; /* Elimina el espacio entre celdas */
+            border-collapse: collapse;
+            border-spacing: 0;
+            
+        }
+
+        .table-header h2 {
+            margin: 0;
+            padding-left: 0.5mm;
+            
+        }
+        .table-footer.top-line td,
+        
+        .table-footer {
+            margin-left: 0.5mm;
+        }
+        .table-footer h2 {
+            margin: 0; /* Asegurarte de que no haya margen dentro de los elementos h2 */
+            padding: 1mm 0; /* Ajustar el padding superior e inferior */
+        }
+        .table-footer h4 {
+            margin: 0; /* Asegurarte de que no haya margen dentro de los elementos h2 */
+            padding: 1mm 0; /* Ajustar el padding superior e inferior */
+        }
+        .saldo-text {
+            margin: 0;
+            margin-left: 0.1mm;
+        }
+
+        .policy {
+            margin-left: 0.5mm;
+        }
+
+      /* Agrega el estilo para eliminar el espacio vertical en las celdas de las filas de la tabla */
+      .table-footer td {
+          padding: 0;
+          line-height: 1;
+      }
+      .nro_boleta {
+        margin: 0;
+        padding: 0;
+    }
+    .nro_mesa {
+        margin: 0;
+    }
+    .fecha_recepcion {
+        margin: 0;
+    }
+    
+    .info-tienda {
+        margin: 0;
+    }
+    .m-0 {
+        margin: 0;
+    }
+    .direccion {
+        margin: 0;
+        
+    }
+  
+
+    </style>
+  </head>
+  <body onload="window.print()" onfocus="window.close()">
+
+    <script>
+        // Obtener los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+
+        // Obtener los valores de los parámetros
+        var nro_boleta = params.has('boleta') ? params.get('boleta') : "---";
+        var nro_mesa = params.has('mesa') ? params.get('mesa') : "---";
+        var direc = params.has('direccion') ? params.get('direccion') : "---";
+        
+
+        var fecha = params.has('fecha') ? params.get('fecha') : "dd/mm/aaaa";
+        var fecha_entrega = params.has('fecha_entrega') ? params.get('fecha_entrega') : "";
+        var domi = params.has('domi') ? params.get('domi') : "N/A";
+        var propina = params.has('propina') ? params.get('propina') : "N/A";
+
+        var total = params.has('total') ? params.get('total') : "";
+        var subtotal_desc = params.has('subtotal_desc') ? params.get('subtotal_desc') : " ";
+        var descuento = params.has('descuento') ? params.get('descuento') : " ";
+        var estado = params.has('estado') ? params.get('estado') : "--";
+
+        //Recibe los datos de los servicios (separados por comas)
+        var cantidades = params.has('cantidades') ? params.get('cantidades') : "0";
+        var descripciones = params.has('servicios') ? params.get('servicios') : "No hay articulos";
+        var p_units = params.has('p_unit') ? params.get('p_unit') : "0.00";
+        
+        //Formato de 2 decimales
+        propina = parseFloat(propina).toLocaleString('es-ES', { minimumFractionDigits: 0 });
+        domi = parseFloat(domi).toLocaleString('es-ES', { minimumFractionDigits: 0 });
+        total = parseFloat(total).toLocaleString('es-ES', { minimumFractionDigits: 0 });
+        descuento = parseFloat(descuento).toLocaleString('es-ES', { minimumFractionDigits: 0 });
+        subtotal_desc = parseFloat(subtotal_desc).toLocaleString('es-ES', { minimumFractionDigits: 0 });
+        
+        //crea una lista de cada columna a partir de las comas.
+        cantidades = cantidades.split(",");
+        descripciones = descripciones.split(","); 
+        p_units = p_units.split(",");
+
+        //Crea una lista para mostrar en cada fila de la tabla
+        var result = [];
+
+        cantidades.forEach(function(value, id) {
+            result[id] = {
+                cantidad: cantidades[id],
+                descripcion: descripciones[id], // + " " + detalles[id], // Descomenta si deseas concatenar la descripción con el detalle
+                precio_unit: parseFloat(p_units[id]).toLocaleString('es-ES', { minimumFractionDigits: 0 }),
+            };
+        });
+    </script>
+    <div id="thermal-pos">
+        <div class="label">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                width="70%" viewBox="0 0 523.000000 462.000000" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,462.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M2940 4342 c0 -3 8 -11 18 -18 16 -13 16 -14 -2 -7 -14 5 -17 3 -11
+-6 4 -8 2 -17 -6 -23 -10 -7 -5 -8 16 -3 27 6 28 5 12 -7 -17 -12 -17 -15 -4
+-27 9 -7 21 -11 29 -10 16 3 67 -9 88 -20 9 -5 35 -12 58 -16 23 -4 44 -11 48
+-16 3 -5 12 -9 21 -9 27 0 172 -61 291 -122 191 -99 344 -211 500 -369 688
+-692 765 -1782 181 -2569 -76 -103 -249 -282 -350 -362 -155 -122 -388 -257
+-529 -304 -30 -11 -57 -22 -60 -26 -3 -3 -23 -9 -45 -13 -22 -4 -44 -11 -50
+-15 -5 -5 -31 -11 -58 -15 -26 -4 -50 -11 -53 -16 -3 -5 -18 -9 -35 -9 -16 0
+-29 -5 -29 -11 0 -5 -4 -8 -8 -5 -4 2 -14 1 -22 -5 -12 -7 -12 -9 4 -9 15 0
+16 -3 6 -15 -10 -12 -9 -15 6 -15 16 0 17 -2 4 -10 -12 -8 -8 -10 15 -11 21
+-1 24 -3 10 -6 -36 -9 -35 -18 2 -21 20 -1 41 2 47 7 6 4 34 12 61 16 76 10
+219 56 345 110 293 125 557 321 762 565 474 565 619 1315 388 2012 -179 538
+-577 987 -1086 1224 -54 25 -108 50 -119 55 -47 21 -244 79 -290 85 -27 4 -54
+10 -60 14 -10 8 -95 9 -95 2z"/>
+<path d="M2030 4309 c-14 -5 -74 -25 -135 -45 -404 -130 -798 -437 -1048 -817
+-195 -296 -313 -649 -335 -1007 -35 -545 132 -1062 472 -1470 190 -228 435
+-421 686 -542 113 -54 147 -68 162 -68 8 0 18 -4 24 -9 13 -12 143 -51 171
+-51 13 0 23 -4 23 -8 0 -4 16 -9 37 -9 22 -1 31 2 23 7 -8 5 -11 19 -8 36 3
+16 2 38 -2 49 -5 11 -9 17 -9 12 -1 -4 -14 -1 -29 7 -15 8 -44 17 -65 21 -20
+4 -37 11 -37 16 0 5 -7 9 -16 9 -15 0 -45 11 -119 45 -16 8 -51 23 -78 35 -73
+32 -253 144 -342 212 -59 46 -116 98 -200 182 -405 406 -611 967 -566 1533 23
+275 81 489 200 733 128 262 341 517 596 711 110 84 364 226 455 254 14 4 30
+11 35 15 6 4 44 18 85 30 102 31 116 43 84 74 -8 9 -12 16 -8 16 3 0 0 8 -7
+17 -12 14 -12 16 0 8 10 -5 12 -4 7 3 -8 14 -20 14 -56 1z"/>
+<path d="M930 2770 c0 -20 7 -20 834 -20 737 0 836 -2 850 -15 8 -9 30 -36 47
+-60 34 -47 49 -54 67 -32 11 13 9 16 -46 82 -5 6 -17 23 -26 38 l-18 27 -854
+0 c-847 0 -854 0 -854 -20z"/>
+<path d="M940 2560 c-19 -19 -20 -31 -18 -173 3 -146 4 -152 24 -155 29 -4 34
+18 34 165 0 118 8 149 32 125 5 -5 36 -68 69 -138 33 -71 67 -135 76 -141 25
+-19 87 -16 106 5 14 16 17 44 17 176 l0 157 -22 -3 c-22 -3 -23 -7 -28 -147
+-7 -198 -19 -199 -104 -11 -31 69 -66 133 -78 143 -28 23 -83 22 -108 -3z"/>
+<path d="M1376 2564 c-8 -20 -8 -298 0 -318 3 -9 17 -16 30 -16 l24 0 0 175 0
+175 -24 0 c-13 0 -27 -7 -30 -16z"/>
+<path d="M1575 2573 c-42 -10 -65 -44 -65 -94 0 -75 36 -99 149 -99 74 0 91
+-10 91 -51 0 -35 -12 -39 -136 -39 l-104 0 0 -31 0 -31 126 3 c123 4 126 5
+150 32 17 20 24 40 24 70 -1 73 -35 97 -137 97 -92 0 -131 26 -103 70 7 11 36
+16 112 20 90 4 103 7 106 24 2 10 -2 22 -10 27 -14 9 -168 10 -203 2z"/>
+<path d="M1886 2564 c-8 -20 -8 -298 0 -318 3 -9 17 -16 30 -16 l24 0 0 175 0
+175 -24 0 c-13 0 -27 -7 -30 -16z"/>
+<path d="M2126 2564 c-3 -9 -6 -42 -6 -75 l0 -59 -55 0 c-52 0 -55 -1 -55 -25
+0 -24 3 -25 55 -25 l55 0 0 -59 c0 -75 6 -91 36 -91 l24 0 0 175 0 175 -24 0
+c-13 0 -27 -7 -30 -16z"/>
+<path d="M2274 2566 c-15 -38 1 -46 98 -46 107 0 142 -13 146 -53 l3 -27 -98
+0 c-80 0 -104 -4 -130 -20 -31 -18 -33 -24 -33 -73 0 -45 4 -58 26 -78 24 -23
+32 -24 157 -24 l132 0 0 137 c0 137 0 138 -28 165 -26 27 -32 28 -147 32 -103
+3 -121 1 -126 -13z m244 -218 l-3 -43 -77 -3 c-43 -2 -87 2 -98 8 -23 12 -28
+65 -7 73 6 3 52 6 100 6 l88 1 -3 -42z"/>
+<path d="M3206 1995 c-18 -18 -14 -25 71 -123 l28 -33 450 0 c248 0 456 1 463
+1 6 0 12 9 12 20 0 20 -7 20 -452 20 l-453 0 -22 33 c-13 17 -36 47 -51 65
+-27 31 -30 32 -46 17z"/>
+<path d="M1107 1894 c-12 -12 -8 -24 8 -24 12 0 15 -13 15 -55 0 -30 5 -55 10
+-55 6 0 10 25 10 55 0 44 3 55 16 55 9 0 14 6 12 13 -5 13 -60 22 -71 11z"/>
+<path d="M1348 1889 c-14 -7 -18 -23 -18 -65 0 -48 3 -56 24 -66 27 -12 65 -3
+50 11 -5 5 -20 11 -34 13 -22 3 -25 8 -25 43 0 36 3 40 29 45 17 3 30 10 30
+15 1 14 -36 17 -56 4z"/>
+<path d="M1657 1893 c-18 -17 -6 -33 20 -27 19 5 30 2 40 -11 12 -18 13 -18
+13 3 0 30 -53 56 -73 35z"/>
+<path d="M1865 1888 c-2 -7 -5 -39 -8 -71 -3 -53 -2 -58 19 -63 12 -3 32 -1
+43 6 30 15 31 114 2 130 -26 14 -51 13 -56 -2z m60 -63 c0 -36 -3 -40 -27 -43
+-27 -3 -28 -2 -28 43 0 45 1 46 28 43 24 -3 27 -7 27 -43z"/>
+<path d="M2003 1894 c-8 -4 -13 -27 -13 -64 0 -63 13 -84 52 -78 34 5 28 23
+-10 26 -32 3 -33 4 -30 45 3 39 5 42 36 45 20 2 32 8 29 15 -4 13 -44 19 -64
+11z"/>
+<path d="M2227 1893 c-4 -3 -6 -34 -5 -67 l1 -61 6 50 c5 45 9 50 34 53 15 2
+27 -1 27 -7 0 -6 4 -11 10 -11 11 0 1 32 -14 42 -14 10 -50 10 -59 1z"/>
+<path d="M2337 1893 c-4 -3 -7 -15 -7 -26 0 -14 3 -17 13 -10 17 14 66 22 73
+12 3 -5 16 -6 30 -3 14 4 31 1 39 -6 12 -10 15 -10 15 2 0 31 -59 54 -75 28
+-4 -7 -12 -7 -25 0 -21 11 -54 13 -63 3z"/>
+<path d="M2632 1891 c-9 -5 -12 -27 -10 -72 l3 -64 33 -3 c24 -2 32 1 32 12 0
+11 -10 16 -31 16 -29 0 -30 1 -27 43 3 38 6 42 31 45 33 4 37 32 5 32 -13 0
+-29 -4 -36 -9z"/>
+<path d="M2726 1887 c-29 -21 -17 -59 22 -69 44 -12 43 -38 -3 -38 -24 0 -35
+-5 -35 -15 0 -10 10 -15 33 -15 38 0 57 15 57 45 0 29 -19 45 -53 45 -42 0
+-28 24 16 28 39 3 48 15 21 26 -24 9 -38 7 -58 -7z"/>
+<path d="M2815 1889 c-4 -6 0 -16 9 -22 8 -7 17 -32 19 -57 l4 -45 1 47 c1 32
+7 50 18 56 9 5 14 14 10 21 -9 14 -53 14 -61 0z"/>
+<path d="M2910 1880 c-38 -38 -14 -130 33 -130 47 0 66 106 25 134 -29 20 -34
+20 -58 -4z m58 -22 c7 -7 12 -25 12 -40 0 -21 -6 -29 -25 -34 -31 -8 -55 10
+-55 40 0 26 18 46 40 46 9 0 21 -5 28 -12z"/>
+<path d="M3023 1894 c-7 -3 -13 -21 -13 -40 0 -27 4 -34 19 -34 30 0 51 -11
+51 -26 0 -9 -12 -14 -35 -14 -24 0 -35 -5 -35 -15 0 -10 10 -15 29 -15 31 0
+61 22 61 45 0 22 -29 45 -57 45 -36 0 -23 24 16 28 19 2 31 8 28 15 -4 13 -44
+19 -64 11z"/>
+<path d="M968 1884 c-6 -9 -48 -116 -48 -121 0 -2 4 -3 9 -3 8 0 17 21 26 59
+2 7 9 19 16 25 9 8 10 4 6 -21 -5 -24 -3 -33 7 -33 8 0 16 -7 20 -15 3 -8 11
+-15 18 -15 9 0 9 3 0 12 -7 7 -12 19 -12 28 -1 25 -36 95 -42 84z"/>
+<path d="M1214 1874 c-3 -10 -13 -34 -21 -52 -8 -18 -12 -40 -10 -50 4 -16 5
+-16 6 1 0 9 6 17 11 17 6 0 10 11 10 25 0 16 6 25 15 25 8 0 15 -7 15 -15 0
+-8 -4 -15 -10 -15 -5 0 -10 -4 -10 -10 0 -5 5 -10 11 -10 7 0 18 -8 25 -17 20
+-27 18 1 -4 59 -22 58 -30 66 -38 42z"/>
+<path d="M1455 1860 c-4 -17 -13 -44 -22 -60 -8 -17 -13 -36 -10 -43 2 -6 13
+12 23 41 20 56 29 63 37 32 3 -13 0 -20 -9 -20 -8 0 -14 -4 -14 -10 0 -5 6
+-10 14 -10 8 0 22 -10 30 -22 12 -17 16 -19 16 -6 0 23 -41 128 -51 128 -4 0
+-10 -14 -14 -30z"/>
+<path d="M1542 1823 l-2 -73 28 0 c37 0 60 15 37 24 -9 3 -25 6 -35 6 -16 0
+-20 9 -23 58 -3 55 -3 54 -5 -15z"/>
+<path d="M1780 1876 c0 -8 -7 -27 -15 -42 -8 -16 -14 -40 -14 -54 2 -24 2 -24
+6 -2 4 18 9 21 31 15 15 -3 33 -13 40 -22 15 -19 14 -14 -8 61 -13 44 -40 74
+-40 44z m28 -54 c2 -7 -3 -12 -12 -12 -9 0 -16 7 -16 16 0 17 22 14 28 -4z"/>
+<path d="M2082 1823 c1 -49 3 -56 5 -25 2 23 7 42 11 42 4 0 18 -18 32 -40 14
+-22 28 -40 32 -40 5 0 8 30 8 66 0 36 -4 63 -9 60 -5 -3 -7 -15 -4 -25 3 -11
+1 -27 -4 -35 -7 -14 -13 -9 -32 24 -12 22 -26 40 -32 40 -5 0 -8 -30 -7 -67z"/>
+<path d="M2513 1870 c-10 -25 -10 -32 9 -82 12 -32 43 -45 63 -28 11 9 15 31
+13 74 l-1 61 -6 -55 c-6 -50 -8 -55 -31 -55 -23 0 -25 4 -30 55 -5 50 -7 53
+-17 30z"/>
+<path d="M1044 1810 c1 -53 2 -55 29 -55 34 0 37 19 3 23 -21 3 -26 9 -29 45
+-3 31 -4 28 -3 -13z"/>
+<path d="M2025 1830 c-3 -5 3 -10 14 -10 12 0 21 5 21 10 0 6 -6 10 -14 10 -8
+0 -18 -4 -21 -10z"/>
+<path d="M2291 1833 c0 -7 -12 -15 -26 -19 -30 -7 -33 -24 -5 -24 10 0 23 -8
+29 -17 14 -26 18 -14 10 32 -3 22 -7 34 -8 28z"/>
+<path d="M2335 1821 c-3 -8 -3 -16 0 -19 3 -3 5 0 5 6 0 7 11 12 25 12 14 0
+25 4 25 9 0 14 -49 7 -55 -8z"/>
+<path d="M2480 1830 c-8 -4 -28 -14 -44 -21 l-30 -14 34 -3 c19 -2 39 2 48 11
+18 18 12 37 -8 27z"/>
+<path d="M2650 1830 c0 -5 9 -10 20 -10 11 0 20 5 20 10 0 6 -9 10 -20 10 -11
+0 -20 -4 -20 -10z"/>
+<path d="M1717 1796 c-6 -14 -14 -17 -38 -12 -25 5 -30 3 -27 -12 2 -9 12 -18
+23 -20 28 -4 58 20 53 44 -3 18 -4 18 -11 0z"/>
+<path d="M2332 1771 c2 -10 13 -16 31 -16 37 0 35 19 -3 26 -25 6 -30 4 -28
+-10z"/>
+                </g>
+</svg>
+
+
+                                            
+            <br/>
+            <br/>
+            <p class="info-tienda">
+                Nit: 
+                <br>
+                Dirección: Juan Domingo Perón 2416 - CABA
+                <br>
+                
+            </p>
+        </div>
+        
+        <div class="label">
+            <b>TICKET:</b>
+            <h1 class="nro_boleta" id="nro_boleta_id" ></h1>
+            <h1 class="nro_mesa" id="nro_mesa_id" ></h1>
+            <h3 class="direccion" id="nro_direccion_id" ></h3>
+        </div>
+        <div class="label">
+            <p class="fecha_recepcion">
+                FECHA DE RECEPCION:
+                <br>
+                <b id="fechaR"></b>
+                <b span id="hora"></b>
+            </p>
+
+        </div>
+
+        <!-- <div class="line">***********************************************</div> -->
+        
+   
+        <table class="table">
+            <tbody id="tablaBody">
+                <tr class="table-header" >
+                    <th><h2>Cant</h2></th>
+                    <th><h2>Descripcion</h2></th>
+                    <th><h2>Total</h2></th>
+                </tr>
+                <script>
+                    /*var result = [
+                        { cantidad: 3, descripcion: "hamburguesa doble carne", precio_unit: 10000 },
+                        { cantidad: 5, descripcion: "Perro mas gaseosa y de todo", precio_unit: 20000 },
+                        // ... otros objetos en el array
+                    ];*/
+
+                    var tablaBody = document.getElementById("tablaBody");
+
+                    result.forEach(function(row) {
+                    var newRow = document.createElement("tr");
+                    newRow.className = "table-item";
+
+                    newRow.innerHTML = `
+                        <td class="item">${row.cantidad}</td>
+                        <td class="item">${row.descripcion}</td>
+                        <td class="item">${row.precio_unit}</td>
+                    `;
+                    tablaBody.appendChild(newRow);
+                    });
+                    // Agrega una fila adicional con un espacio
+                    var spaceRow = document.createElement("tr");
+                    spaceRow.innerHTML = `<td colspan="3">&nbsp;</td>`;
+                    tablaBody.appendChild(spaceRow);
+
+                </script>
+                <!-- 
+                <tr class="table-footer top-line">
+                    <td class=""  colspan="2" id="propincell"><h4>Propina Sugerida:</h4></td>
+                    <td colspan="2"><h4 id="propina"></h4></td>
+                </tr>
+                <tr class="table-footer top-line">
+                    <td class=""  colspan="2" id="domicilioCell"><h4>DOMICILIO:</h4></td>
+                    <td colspan="2"><h4 id="domi"></h4></td>
+                </tr>
+               -->
+                <tr class="table-footer">
+                    <td colspan="2"><h2>EFECTIVO:</h2></td>
+                    <td colspan="2"><h2 id="efectivo"></h2></td>
+                    
+                </tr>
+                <tr class="table-footer top-line">
+                    <td class=""  colspan="2"><h2>TOTAL:</h2></td>
+                    <td colspan="2"><h2 id="total"></h2></td>
+                </tr>
+                <tr class="table-footer">
+                    <td colspan="2"><h2>DEVUELTAS:</h2></td>
+                    <td colspan="2"><h2 id="devueltas"></h2></td>
+                </tr>
+                
+            </tbody>
+        </table>
+        <br/>
+        <p class="saldo-text">
+            <b><span class="estado-deuda" id="estado"></span></b>
+        </p>
+        <div class="policy">
+            <p class="policy-title">
+                <b>IMPORTANTE:</b>
+            </p>
+        
+            <p class="m-0">
+               Facturas AutoSystem
+               <br/>
+               Contactos:
+               +57 315 820 8619
+               <br/>
+               Siguenos en redes sociales como @AutoSystem
+            </p>
+    </div>
+    <script>
+        var nroBoletaElement = document.getElementById("nro_boleta_id").textContent = nro_boleta;
+        var nroMesaElement = document.getElementById("nro_mesa_id").textContent = nro_mesa;
+        var nroDireccion = document.getElementById("nro_direccion_id").textContent = direc;
+
+
+        var fechaElement = document.getElementById("fechaR").textContent = fecha;
+        var fecha_entregaElement = document.getElementById("hora").textContent = fecha_entrega;
+
+        /*const propinaCell = document.getElementById("propinaCell");
+        var propinaElement = document.getElementById("propina");
+                    // Verifica si domi es igual a "N/A"
+            if (propina == "NaN") {
+                    // Si domi es "N/A", oculta el elemento <td> que contiene la etiqueta y el valor
+                propinaCell.style.display = "none";
+            } else {
+             // Si domi no es "N/A", muestra el valor en el elemento <h2>
+             propinaElement.textContent = propina;
+            }  
+
+        const domicilioCell = document.getElementById("domicilioCell");
+        var domiElement = document.getElementById("domi");
+                    // Verifica si domi es igual a "N/A"
+            if (domi == "NaN") {
+                    // Si domi es "N/A", oculta el elemento <td> que contiene la etiqueta y el valor
+                domicilioCell.style.display = "none";
+            } else {
+             // Si domi no es "N/A", muestra el valor en el elemento <h2>
+             domiElement.textContent = domi;
+            }       */
+        var totalElement = document.getElementById("total").textContent = total;
+        var subtotal_descElement = document.getElementById("efectivo").textContent = descuento;
+        var descuentoElement = document.getElementById("devueltas").textContent = subtotal_desc;
+        var estadoElement = document.getElementById("estado").textContent = estado;
+    </script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
