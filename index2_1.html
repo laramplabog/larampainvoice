@@ -91,10 +91,10 @@
 
     </style>
   </head>
-  <body>
+  <body onload="window.print()" onfocus="window.close()">
 
     <script>
-        //onload="window.print()" onfocus="window.close()"
+        //
         // Obtener los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
 
@@ -142,7 +142,7 @@
     <div id="thermal-pos">
         <div class="label">
            <h2 id="DatosEmpresa" ></h2>
-           <h3>Factura de veta</h3>
+           <h3>Factura de venta</h3>
         </div>
 
         <div class="label">
@@ -228,16 +228,3 @@
 
     </script>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
