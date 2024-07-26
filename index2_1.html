@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=60mm, initial-scale=1.0"> <!-- Cambiar el ancho de la vista para el papel de 58mm -->
+    <title>Ticket de Compra</title>
+    <style>
+     body {
+            font-family: tahoma, Helvetica, sans-serif;
+            margin: 0;
+            font-size: 3mm;
+            text-align: center; /* Centrar todo el contenido */
+        }
+
+        #thermal-pos {
+           
+            margin: none;
+            max-width: 60mm;
+            
+        }
+
+        .label {
+            margin: 0;
+            margin-left: 0.5mm;
+        }
+
+        .table {
+          
+            border-collapse: collapse; /* Elimina el espacio entre celdas */
+            border-collapse: collapse;
+            border-spacing: 0;
+            
+        }
+
+        .table-header h2 {
+            margin: 0;
+            padding-left: 0.5mm;
+            
+        }
+        .table-footer.top-line td,
+        
+        .table-footer {
+            margin-left: 0.5mm;
+        }
+        .table-footer h2 {
+            margin: 0; /* Asegurarte de que no haya margen dentro de los elementos h2 */
+            padding: 1mm 0; /* Ajustar el padding superior e inferior */
+        }
+        .table-footer h4 {
+            margin: 0; /* Asegurarte de que no haya margen dentro de los elementos h2 */
+            padding: 1mm 0; /* Ajustar el padding superior e inferior */
+        }
+        .saldo-text {
+            margin: 0;
+            margin-left: 0.1mm;
+        }
+
+        .policy {
+            margin-left: 0.5mm;
+        }
+
+      /* Agrega el estilo para eliminar el espacio vertical en las celdas de las filas de la tabla */
+      .table-footer td {
+          padding: 0;
+          line-height: 1;
+      }
+      .nro_boleta {
+        margin: 0;
+        padding: 0;
+    }
+    .nro_mesa {
+        margin: 0;
+    }
+    .fecha_recepcion {
+        margin: 0;
+    }
+    
+    .info-tienda {
+        margin: 0;
+    }
+    .m-0 {
+        margin: 0;
+    }
+    .direccion {
+        margin: 0;
+        
+    }
+   
+
+    </style>
+  </head>
+  <body>
+
+    <script>
+        //onload="window.print()" onfocus="window.close()"
+        // Obtener los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+
+        // Obtener los valores de los parámetros
+        var fecha = params.has('fecha') ? params.get('fecha') : "N/A";
+        var cliente = params.has('cliente') ? params.get('cliente') : "N/A";
+        var cajero = params.has('cajero') ? params.get('cajero') : "N/A";
+        var formapago = params.has('formapago') ? params.get('formapago') : "N/A";
+        var cantidad = params.has('cantidad') ? params.get('cantidad') : "N/A";
+        var producto = params.has('producto') ? params.get('producto') : "N/A";
+        var subtotal = params.has('subtotal') ? params.get('subtotal') : "N/A";
+        var totalventa = params.has('totalventa') ? params.get('totalventa') : "N/A";
+
+        var DatosEmpresa = params.has('DatosEmpresa') ? params.get('DatosEmpresa') : "N/A";
+        var DatosNit = params.has('DatosNit') ? params.get('DatosNit') : "N/A";
+        var DatosDireccion = params.has('DatosDireccion') ? params.get('DatosDireccion') : "N/A";
+        var DatosHorario = params.has('DatosHorario') ? params.get('DatosHorario') : "N/A";
+        var DatosPoliza = params.has('DatosPoliza') ? params.get('DatosPoliza') : "N/A";
+
+       
+        //Formato de 2 decimales
+       
+      
+        totalventa = parseFloat(totalventa).toLocaleString('es-ES', { minimumFractionDigits: 0 });
+        
+        
+        //crea una lista de cada columna a partir de las comas.
+        cantidad = cantidad.split(",");
+        producto = producto.split(","); 
+        subtotal = subtotal.split(",");
+
+        //Crea una lista para mostrar en cada fila de la tabla
+        var result = [];
+        
+        cantidad.forEach(function(value, id) {
+            result[id] = {
+                cantidad_: cantidad[id],
+                producto_: producto[id], // + " " + detalles[id], // Descomenta si deseas concatenar la descripción con el detalle
+                subtotal_: parseFloat(subtotal[id]).toLocaleString('es-ES', { minimumFractionDigits: 0 }),
+            };
+        });
+      
+
+    </script>
+    <div id="thermal-pos">
+        <div class="label">
+           <h2 id="DatosEmpresa" ></h2>
+           <h3>Factura de veta</h3>
+        </div>
+
+        <div class="label">
+            <p class="fecha_recepcion">
+                Fecha:  
+                <b id="fecha"></b>
+                <b span id="fecha"></b>
+            </p>
+            <p class="fecha_recepcion">
+                Cliente:
+                <b id="cliente"></b>
+                <b span id="cliente"></b>
+            </p>
+            <p class="fecha_recepcion">
+                Cajero:
+                <b id="cajero"></b>
+                <b span id="cajero"></b>
+            </p>
+            <p class="fecha_recepcion">
+                Forma de pago:
+                <b id="formaPago"></b>
+                <b span id="formaPago"></b>
+            </p>
+        </div>
+
+        <table class="table">
+            <tbody id="tablaBody">
+                <tr class="table-header" >
+                    <th><h2>Cant</h2></th>
+                    <th><h2>Producto</h2></th>
+                    <th><h2>Subtotal</h2></th>
+                </tr>
+                <script>
+                    /*var result = [
+                        { cantidad: 3, descripcion: "hamburguesa doble carne", precio_unit: 10000 },
+                        { cantidad: 5, descripcion: "Perro mas gaseosa y de todo", precio_unit: 20000 },
+                        // ... otros objetos en el array
+                    ];*/
+
+                    var tablaBody = document.getElementById("tablaBody");
+
+                    result.forEach(function(row) {
+                    var newRow = document.createElement("tr");
+                    newRow.className = "table-item";
+
+                    newRow.innerHTML = `
+                        <td class="item">${row.cantidad_}</td>
+                        <td class="item">${row.producto_}</td>
+                        <td class="item">${row.subtotal_}</td>
+                    `;
+                    tablaBody.appendChild(newRow);
+                    });
+                    // Agrega una fila adicional con un espacio
+                    var spaceRow = document.createElement("tr");
+                    spaceRow.innerHTML = `<td colspan="3">&nbsp;</td>`;
+                    tablaBody.appendChild(spaceRow);
+
+                </script>
+                <tr class="table-footer top-line">
+                    <td class=""  colspan="2"><h2>Total Venta:</h2></td>
+                    <td colspan="2"><h2 id="total"></h2></td>
+                </tr>
+            </tbody>
+        </table>
+
+            
+
+    <script>
+        var fechaUi = document.getElementById("fecha").textContent = fecha;
+        var clienteUi = document.getElementById("cliente").textContent = cliente;
+        var cajeroUi = document.getElementById("cajero").textContent = cajero;
+        var formapagoUi = document.getElementById("formaPago").textContent = formapago;
+        var totalventaUi = document.getElementById("total").textContent = totalventa;
+        
+
+        var DatosEmpresaUi = document.getElementById("DatosEmpresa").textContent = DatosEmpresa;
+        var DatosNitUi = document.getElementById("DatosNit").textContent = DatosNit;
+        var DatosDireccionUi = document.getElementById("DatosDireccion").textContent = DatosDireccion;
+        var DatosHorarioUi = document.getElementById("DatosHorario").textContent = DatosHorario;
+        var DatosPolizaUi = document.getElementById("DatosPoliza").textContent = DatosPoliza;
+       
+       
+
+    </script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
