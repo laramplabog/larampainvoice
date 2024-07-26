@@ -97,12 +97,14 @@
   <body onload="window.print()" onfocus="window.close()">
 
     <script>
+        //"
         // Obtener los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
 
         // Obtener los valores de los parámetros
         var fecha = params.has('fecha') ? params.get('fecha') : "dd/mm/aaaa hh:mm:ss";
         var TipoPlaca = params.has('TipoPlaca') ? params.get('TipoPlaca') : "N/A";
+        var EntradaPlaca = params.has('EntradaPlaca') ? params.get('EntradaPlaca') : "N/A";
         var VirtualReglamento = params.has('VirtualReglamento') ? params.get('VirtualReglamento') : "N/A";
 
         var DatosEmpresa = params.has('DatosEmpresa') ? params.get('DatosEmpresa') : "N/A";
@@ -116,7 +118,6 @@
         var barcodeUrl = "https://barcode.tec-it.com/barcode.ashx?data=" + encodeURIComponent(EntradaPlaca);
 
         
-
     </script>
     <div id="thermal-pos">
         <div class="label">
